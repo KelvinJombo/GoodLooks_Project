@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Catalog\Catalog.Api\Catalog.Api.csproj" />
+    <ProjectReference Include="..\IdentityServer\Identity.Api\Identity.Api.csproj" />
     <ProjectReference Include="..\MelaninKeratin.ApiService\MelaninKeratin.ApiService.csproj" />
     <ProjectReference Include="..\MelaninKeratin.Web\MelaninKeratin.Web.csproj" />
   </ItemGroup>

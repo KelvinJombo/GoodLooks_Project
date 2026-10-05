@@ -1,19 +1,15 @@
 ﻿using Catalog.Application.Dtos.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Catalog.Domain.Models.Response;
 
 namespace Catalog.Application.Interfaces.IService
 {
     public interface IServiService
     {
-        Task<ServiceResponseDto> CreateServi(CreateServiceDto dto);
-        Task<ServiceResponseDto> GetAllServi();
-        Task<ServiceResponseDto> GetServiById(string id);
-        Task<ServiceResponseDto> UpdateServi(UpdateServiceDto dto);
-        Task<bool> DeleteServiById(string id);
+        Task<ApiResponse<ServiceResponseDto>> CreateServi(CreateServiceDto dto);
+        Task<ApiResponse<IEnumerable<ServiceResponseDto>>> GetAllServi();
+        Task<ApiResponse<ServiceResponseDto>> GetServiById(string id);
+        Task<ApiResponse<ServiceResponseDto>> UpdateServi(string id, UpdateServiceDto dto);
+        Task<ApiResponse<bool>> DeleteServiById(string id);
 
     }
 }

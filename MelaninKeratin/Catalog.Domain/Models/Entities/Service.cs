@@ -6,13 +6,14 @@ namespace Catalog.Domain.Models.Entities
     public class Service
     {
         [Key]
-        public string Id { get; private set; } = Guid.NewGuid().ToString();
+        public string Id { get; set; } = Guid.NewGuid().ToString();
         [Required]
-        public string Name { get; private set; } = string.Empty;
-        public decimal PriceTag { get; private set; }  
-        public ServiceType Type { get; private set; }
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public decimal PriceTag { get; set; }  
+        public ServiceType Type { get; set; }
         public string? TypeOption { get; set; }
-        public ICollection<Photo> Photos { get; private set; }
+        public ICollection<Photo> Photos { get; set; }
             = new List<Photo>();
     }
 }

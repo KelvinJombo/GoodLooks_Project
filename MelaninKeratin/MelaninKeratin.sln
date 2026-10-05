@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36915.13 d17.14
+VisualStudioVersion = 17.14.36915.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MelaninKeratin.AppHost", "MelaninKeratin.AppHost\MelaninKeratin.AppHost.csproj", "{A178566F-B686-40F3-9276-C116FF8BD156}"
 EndProject
@@ -18,7 +18,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Application", "Cata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Infrastructure", "Catalog.Infrastructure\Catalog.Infrastructure.csproj", "{C7F3137B-C082-4471-B464-AD8111A59D48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api", "Catalog.Api\Catalog.Api.csproj", "{11496B32-FE5E-4848-9435-6C235034B8CD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{79A6C81C-A6CE-40E9-AFD4-EAA5DC74A5C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Api", "IdentityServer\Identity.Api\Identity.Api.csproj", "{962480A2-D552-E527-D749-875CB409A0C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalog.Api", "Catalog\Catalog.Api\Catalog.Api.csproj", "{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +58,14 @@ Global
 		{C7F3137B-C082-4471-B464-AD8111A59D48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7F3137B-C082-4471-B464-AD8111A59D48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7F3137B-C082-4471-B464-AD8111A59D48}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11496B32-FE5E-4848-9435-6C235034B8CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11496B32-FE5E-4848-9435-6C235034B8CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11496B32-FE5E-4848-9435-6C235034B8CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11496B32-FE5E-4848-9435-6C235034B8CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{962480A2-D552-E527-D749-875CB409A0C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{962480A2-D552-E527-D749-875CB409A0C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{962480A2-D552-E527-D749-875CB409A0C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{962480A2-D552-E527-D749-875CB409A0C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,7 +74,8 @@ Global
 		{34B81174-12DB-4495-8ED0-B69FECBAFB01} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{EC170401-F93B-4D8E-BF8B-45E367071DFE} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{C7F3137B-C082-4471-B464-AD8111A59D48} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{11496B32-FE5E-4848-9435-6C235034B8CD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{962480A2-D552-E527-D749-875CB409A0C9} = {79A6C81C-A6CE-40E9-AFD4-EAA5DC74A5C4}
+		{EED4BB8A-1982-C4DD-2ECA-F36447B7D8AB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7AE2093E-CAE3-444A-B3B0-E4545F13A8E5}

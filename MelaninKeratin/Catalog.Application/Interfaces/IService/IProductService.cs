@@ -1,19 +1,15 @@
-﻿using Catalog.Application.Dtos;
-using Catalog.Application.Dtos.Product;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Catalog.Application.Dtos.Product;
+using Catalog.Domain.Models.Response;
 
 namespace Catalog.Application.Interfaces.IService
 {
     public interface IProductService
     {
-        Task<ProductResponseDto>CreateProductDto(CreateProductDto dto);
-        Task<ProductResponseDto> GetProductById(string id); 
-        Task<ProductResponseDto> GetProducts();
-        Task<ProductResponseDto> UpdateProductDto(UpdateProductDto dto);
-        Task<bool> DeleteProductById(string id);
+       
+        Task<ApiResponse<ProductResponseDto>> CreateProduct(CreateProductDto dto);
+        Task<ApiResponse<ProductResponseDto>> GetProductById(string id);
+        Task<ApiResponse<IEnumerable<ProductResponseDto>>> GetProducts();
+        Task<ApiResponse<ProductResponseDto>> UpdateProduct(string id, UpdateProductDto dto);
+        Task<ApiResponse<bool>> DeleteProductById(string id);
     }
 }
