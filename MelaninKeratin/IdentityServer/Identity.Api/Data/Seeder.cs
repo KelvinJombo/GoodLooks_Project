@@ -8,8 +8,7 @@ namespace Identity.Api.Data;
 
 public static class Seeder
 {
-    public static async Task SeedAllAsync(
-        IServiceProvider serviceProvider)
+    public static async Task SeedAllAsync(IServiceProvider serviceProvider)
     {
         await using var scope = serviceProvider.CreateAsyncScope();
         var services = scope.ServiceProvider;
@@ -37,12 +36,21 @@ public static class Seeder
         var configContext =
             services.GetRequiredService<ConfigurationDbContext>();
 
+        var db = services.GetRequiredService<AppDbContext>();
+        var connection = db.Database.GetDbConnection();
+
+        Console.WriteLine("=== IDENTITY SEEDER STARTED ===");
+        Console.WriteLine($"Database: {connection.Database}");
+        Console.WriteLine($"Data source: {connection.DataSource}");
+        Console.WriteLine($"Connection state: {connection.State}");
+
         await SeedDuendeConfigurationAsync(configContext);
+
+        Console.WriteLine("=== IDENTITY SEEDER COMPLETED ===");
     }
 
-    private static async Task SeedUsersAndRolesAsync(
-        RoleManager<IdentityRole> roleManager,
-        UserManager<User> userManager)
+
+    private static async Task SeedUsersAndRolesAsync(RoleManager<IdentityRole> roleManager, UserManager<User> userManager)
     {
         const string roleName = "Admin";
         const string email = "admin@example.com";

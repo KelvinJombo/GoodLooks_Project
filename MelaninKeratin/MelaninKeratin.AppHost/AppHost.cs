@@ -28,6 +28,4 @@ builder.AddProject<Projects.MelaninKeratin_ApiService>("catalog-api")
 builder.AddProject<Projects.Identity_Api>("identity-api")
     .WithReference(identityDb).WaitFor(identityDb);
 
-builder.AddProject<Projects.Catalog_Api>("catalog-api");
-
 builder.Build().Run();

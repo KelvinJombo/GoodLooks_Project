@@ -1,0 +1,25 @@
+﻿@page "/account/login"
+@model Identity.Api.Pages.Account.LoginModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in - MelaninKeration</title>
+</head>
+<body>
+    <main>
+        <h1>Welcome to MelaninKeration</h1>
+        <p>Choose a provider to sign in.</p>
+
+        <a href="@Model.GetProviderUrl("Google")">
+            Continue with Google
+        </a>
+
+        <a href="@Model.GetProviderUrl("Facebook")">
+            Continue with Facebook
+        </a>
+    </main>
+</body>
+</html>
