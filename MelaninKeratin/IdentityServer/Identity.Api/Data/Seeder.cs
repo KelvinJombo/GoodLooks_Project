@@ -73,6 +73,7 @@ public static class Seeder
                 EmailConfirmed = true,
                 FirstName = "System",
                 LastName = "Administrator",
+                Address = "123 Main St, Anytown, USA",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };

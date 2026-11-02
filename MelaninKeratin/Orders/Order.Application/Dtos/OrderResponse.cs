@@ -1,6 +1,17 @@
-﻿namespace Order.Application.Dtos
+﻿using Order.Domain.Enums;
+
+namespace Order.Application.Dtos
 {
-    public class OrderResponse
-    {
-    }
+    public sealed record OrderResponse
+(
+    Guid Id,
+    string CustomerId,
+    OrderStatus Status,
+    string? PaymentReference,
+    decimal TotalAmount,
+    string Currency,
+    DateTime CreatedAtUtc,
+    DateTime? ConfirmedAtUtc,
+    IReadOnlyCollection<OrderItemResponse> Items
+);
 }

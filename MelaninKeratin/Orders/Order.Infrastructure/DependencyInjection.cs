@@ -13,21 +13,20 @@ namespace Order.Infrastructure
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            // Register infrastructure services here
-            services.AddMarten(opts =>
-            {
-                opts.Connection(configuration.GetConnectionString("orderdb")!);
-                //opts.Schema.For<Order>().Identity(x => x.UserName);
-            }).UseLightweightSessions();
+            // Register infrastructure services here            
+
+            var connectionString = configuration.GetConnectionString("orderDb")
+            ?? throw new InvalidOperationException("Order database connection string was not configured.");
+
 
             services.AddDbContext<OrderDbContext>(options =>
                     options.UseSqlServer(
-                        configuration.GetConnectionString("orderdb")));
+                        configuration.GetConnectionString(connectionString)));
 
-            services.AddScoped<IOrderRepository, OrderRepository>();            
-          
+            services.AddScoped<IOrderRepository, OrderRepository>();          
 
-            //services.AddScoped<IOrderDbContext, OrderDbContext>();
+            services.AddScoped<IOrderService, OrderService>();
+
             return services;
         }
     }

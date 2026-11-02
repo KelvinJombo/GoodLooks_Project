@@ -1,3 +1,4 @@
+using BuildingBlocks.Authentication;
 using Catalog.Application.Interfaces.IGenericRepository;
 using Catalog.Application.Interfaces.IService;
 using Catalog.Application.ServicesImplementations;
@@ -12,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 // Add services to the container.
-
+builder.Services.AddControllers();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateProductDtoValidator>();
 
 var connectionString =
@@ -25,18 +26,7 @@ builder.Services.AddDbContext<CatalogDbContext>(options =>
 
 
 
-//builder.Services.AddAuthentication("Bearer")
-//    .AddJwtBearer("Bearer", options =>
-//    {
-//    options.Authority = "https://localhost:7031";
-
-//          options.Authority = builder.Configuration["Identity:Authority"];
-
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateAudience = false
-//        };
-//    });
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddAuthorization(options =>
 {

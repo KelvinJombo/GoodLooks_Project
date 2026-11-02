@@ -1,6 +1,4 @@
 ﻿namespace Order.Application.Dtos
 {
-    public class OrderItemResponse
-    {
-    }
+    public sealed record OrderItemResponse(Guid ProductId, string ProductName, int Quantity, decimal UnitPrice, decimal SubTotal);
 }

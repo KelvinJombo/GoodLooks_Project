@@ -1,28 +1,16 @@
-using Microsoft.EntityFrameworkCore;
+using BuildingBlocks.Authentication;
 using Order.Api;
 using Order.Application;
 using Order.Infrastructure;
-using Order.Infrastructure.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-//builder.Services.AddAuthentication("Bearer")
-//    .AddJwtBearer("Bearer", options =>
-//    {
-//    options.Authority = "https://localhost:7031";
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
-//          options.Authority = builder.Configuration["Identity:Authority"];
-
-//        options.TokenValidationParameters = new TokenValidationParameters
-//        {
-//            ValidateAudience = false
-//        };
-//    });
-
-// Add services to the container.
+//Add services to the container.
 
 
 

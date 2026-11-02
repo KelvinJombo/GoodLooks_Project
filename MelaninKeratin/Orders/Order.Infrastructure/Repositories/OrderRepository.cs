@@ -1,45 +1,41 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Mapster;
+using Microsoft.EntityFrameworkCore;
+using Order.Application.Dtos;
 using Order.Application.Interfaces;
 using Order.Domain.Entities;
 using Order.Infrastructure.Data;
 
 namespace Order.Infrastructure.Repositories
 {
-    public sealed class OrderRepository(
-    OrderDbContext context) : IOrderRepository
+    public sealed class OrderRepository(OrderDbContext context) : IOrderRepository
     {
-        public async Task<Ordering?> GetByIdAsync(
-            Guid orderId,
-            CancellationToken cancellationToken)
+        public async Task<OrderResponse?> GetByIdAsync(Guid orderId, CancellationToken cancellationToken)
         {
-            return await context.Orders
-                .Include(x => x.Items)
-                .FirstOrDefaultAsync(
-                    x => x.Id == orderId,
-                    cancellationToken);
+            var order = await context.Orders.Include(x => x.Items).FirstOrDefaultAsync(x => x.Id == orderId, cancellationToken);
+
+            return order?.Adapt<OrderResponse>();
         }
 
-        public async Task<IReadOnlyList<Ordering>> GetByCustomerIdAsync(
-            string customerId,
-            CancellationToken cancellationToken)
+        public async Task<IReadOnlyList<OrderResponse>> GetByCustomerIdAsync( string customerId, CancellationToken cancellationToken)
         {
-            return await context.Orders
+            var orders = await context.Orders
                 .AsNoTracking()
                 .Include(x => x.Items)
                 .Where(x => x.CustomerId == customerId)
                 .OrderByDescending(x => x.CreatedAtUtc)
                 .ToListAsync(cancellationToken);
+
+
+            return orders.Adapt<IReadOnlyList<OrderResponse>>();
         }
 
-        public async Task AddAsync(
-            Ordering order,
-            CancellationToken cancellationToken)
+        public async Task AddAsync(CreateOrderRequest order, CancellationToken cancellationToken)
         {
-            await context.Orders.AddAsync(order, cancellationToken);
+            var orderToAdd = order.Adapt<Ordering>();
+            await context.Orders.AddAsync(orderToAdd, cancellationToken);
         }
 
-        public Task SaveChangesAsync(
-            CancellationToken cancellationToken)
+        public Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             return context.SaveChangesAsync(cancellationToken);
         }

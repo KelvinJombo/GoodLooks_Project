@@ -1,29 +1,44 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-
-// 1. Tell Aspire to run a Docker container for PostgreSQL
+// PostgreSQL server
 var postgresServer = builder.AddPostgres("postgres-server");
 
+// PostgreSQL databases
 var identityDb = postgresServer.AddDatabase("identitydb");
 
 var cartDb = postgresServer.AddDatabase("cartdb");
 
-// 2. Create your individual database on that server instance
 var catalogDb = postgresServer.AddDatabase("CatalogDb");
-
-var orderdb = postgresServer.AddDatabase("orderDb");
 
 var paymentDatabase = postgresServer.AddDatabase("paymentdb");
 
-builder.AddProject<Projects.Payment_Api>("payment-api").WithReference(paymentDatabase);
 
-// 3. Pass that specific database connection into your API project
-builder.AddProject<Projects.Catalog_Api>("catalog-api").WithReference(catalogDb); // Aspire securely injects this string at runtime
+// SQL Server resource
+var sqlServer = builder.AddSqlServer("sqlserver");
 
-builder.AddProject<Projects.Identity_Api>("identity-api").WithReference(identityDb).WaitFor(identityDb);
+// Order database hosted on SQL Server
+var orderDb = sqlServer.AddDatabase("orderDb");
 
-builder.AddProject<Projects.Order_Api>("order-api").WithReference(orderdb).WaitFor(orderdb);
 
-builder.AddProject<Projects.Cart_Api>("cart-api").WithReference(cartDb).WaitFor(cartDb);
+// Register microservices
+
+builder.AddProject<Projects.Payment_Api>("payment-api")
+    .WithReference(paymentDatabase);
+
+builder.AddProject<Projects.Catalog_Api>("catalog-api")
+    .WithReference(catalogDb);
+
+builder.AddProject<Projects.Identity_Api>("identity-api")
+    .WithReference(identityDb)
+    .WaitFor(identityDb);
+
+builder.AddProject<Projects.Order_Api>("order-api")
+    .WithReference(orderDb)
+    .WaitFor(orderDb);
+
+builder.AddProject<Projects.Cart_Api>("cart-api")
+    .WithReference(cartDb)
+    .WaitFor(cartDb);
+
 
 builder.Build().Run();

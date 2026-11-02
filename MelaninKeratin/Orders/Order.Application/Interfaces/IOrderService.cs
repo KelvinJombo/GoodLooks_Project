@@ -1,21 +1,13 @@
-﻿using Order.Domain.Entities;
+﻿using Order.Application.Dtos;
 
 namespace Order.Application.Interfaces
 {
     public interface IOrderService
     {
-        Task<Ordering?> GetOrderAsync(
-            Guid orderId,
-            string customerId,
-            CancellationToken cancellationToken);
+        Task<OrderResponse?> GetOrderAsync( Guid orderId,  string customerId, CancellationToken cancellationToken);
 
-        Task<IReadOnlyList<Ordering>> GetCustomerOrdersAsync(
-            string customerId,
-            CancellationToken cancellationToken);
+        Task<IReadOnlyList<OrderResponse>> GetCustomerOrdersAsync( string customerId, CancellationToken cancellationToken);
 
-        Task CancelOrderAsync(
-            Guid orderId,
-            string customerId,
-            CancellationToken cancellationToken);
+        
     }
 }

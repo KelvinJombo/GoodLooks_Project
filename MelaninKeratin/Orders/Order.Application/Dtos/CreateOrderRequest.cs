@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Order.Application.Dtos
+﻿namespace Order.Application.Dtos
 {
-    internal class CreateOrderRequest
-    {
-    }
+    public sealed record CreateOrderRequest(IReadOnlyCollection<CreateOrderItemRequest> Items);
+
+    public sealed record CreateOrderItemRequest(Guid ProductId, int Quantity);
 }

@@ -1,3 +1,4 @@
+using BuildingBlocks.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Payment.Api.Data;
 using Payment.Api.Options;
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 // Add services to the container.
+
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
 var connectionString =
     builder.Configuration.GetConnectionString("paymentdb")

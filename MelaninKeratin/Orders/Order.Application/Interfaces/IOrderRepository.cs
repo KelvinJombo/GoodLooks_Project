@@ -1,22 +1,15 @@
-﻿using Order.Domain.Entities;
+﻿using Order.Application.Dtos;
 
 namespace Order.Application.Interfaces
 {
     public interface IOrderRepository
     {
-        Task<Ordering?> GetByIdAsync(
-            Guid orderId,
-            CancellationToken cancellationToken);
+        Task<OrderResponse?> GetByIdAsync( Guid orderId, CancellationToken cancellationToken);
 
-        Task<IReadOnlyList<Ordering>> GetByCustomerIdAsync(
-            string customerId,
-            CancellationToken cancellationToken);
+        Task<IReadOnlyList<OrderResponse>> GetByCustomerIdAsync( string customerId, CancellationToken cancellationToken);
 
-        Task AddAsync(
-            Ordering order,
-            CancellationToken cancellationToken);
+        Task AddAsync(CreateOrderRequest order, CancellationToken cancellationToken);
 
-        Task SaveChangesAsync(
-            CancellationToken cancellationToken);
+        Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
